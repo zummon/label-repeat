@@ -72,7 +72,7 @@
 			bind:value={font}
 		>
 			{#each Object.keys(fontList) as value, index (`font-${index}`)}
-				<option value={value}>{value}</option>
+				<option class="text-black bg-white" value={value}>{value}</option>
 			{/each}
 		</select>
 	</label>
