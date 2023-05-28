@@ -6,7 +6,23 @@
 	let color = "#000000";
 	let columns = "4";
 	let repeat = "24";
+	let font = 'None'
+	
+	let fontList = {
+		None: {
+			fontFamily: '',
+			link: '',
+		},
+		Kodchasan: {
+			fontFamily: "'Kodchasan', sans-serif",
+			link: "https://fonts.googleapis.com/css2?family=Kodchasan&display=swap",
+		}
+	}
 </script>
+
+<svelte:head>
+	<link href={fontList[font].link} rel="stylesheet">
+</svelte:head>
 
 <div
 	class="mx-auto flex max-w-3xl flex-wrap items-center justify-center px-2 print:hidden"
@@ -14,7 +30,7 @@
 	<label
 		class="m-2 rounded-md border-2 border-dotted border-gray-500 py-1 px-3"
 	>
-		<span class="text-lg">Color</span>
+		<span class="text-lg text-gray-400">Color</span>
 		<input
 			class="border-transparent bg-transparent p-0 text-lg"
 			style=""
@@ -25,7 +41,7 @@
 	<label
 		class="m-2 rounded-md border-2 border-dotted border-gray-500 py-1 px-3"
 	>
-		<span class="text-lg">Columns</span>
+		<span class="text-lg text-gray-400">Columns</span>
 		<input
 			class="border-transparent bg-transparent p-0 text-lg"
 			style="width: 2rem;"
@@ -37,7 +53,7 @@
 	<label
 		class="m-2 rounded-md border-2 border-dotted border-gray-500 py-1 px-3"
 	>
-		<span class="text-lg">Repeat</span>
+		<span class="text-lg text-gray-400">Repeat</span>
 		<input
 			class="border-transparent bg-transparent p-0 text-lg"
 			style="width: 3rem"
@@ -45,6 +61,20 @@
 			min="1"
 			bind:value={repeat}
 		/>
+	</label>
+	<label
+		class="m-2 rounded-md border-2 border-dotted border-gray-500 py-1 px-3"
+	>
+		<span class="text-lg text-gray-400">Font</span>
+		<select
+			class="border-transparent bg-transparent p-0 text-lg"
+			style=""
+			bind:value={font}
+		>
+			{#each Object.keys(fontList) as value, index (`font-${index}`)}
+				<option value={value}>{value}</option>
+			{/each}
+		</select>
 	</label>
 </div>
 
@@ -77,8 +107,8 @@
 </div>
 
 <div
-	class="mx-auto grid resize-x overflow-auto bg-white text-center print:resize-none"
-	style="grid-template-columns: repeat({columns}, minmax(0, 1fr)); width: 768px"
+	class="mx-auto grid resize-x overflow-auto bg-white text-center print:resize-none print:overflow-visible print:mx-0"
+	style="grid-template-columns: repeat({columns}, minmax(0, 1fr)); width: 768px; font-family: {fontList[font].fontFamily}"
 >
 	{#each { length: repeat } as _, i (`repeat-${i}`)}
 		<div class="p-2">
