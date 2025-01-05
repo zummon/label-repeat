@@ -6,13 +6,22 @@
 	let ws = $state([500, 500])
 	let lss = $state([0, 0])
 
+	let cards = $state([
+		{
+			key: '',
+			write: '',
+			heavy: 500,
+			space: 0,
+		},
+	])
+
 	onMount(() => {
-		const searchParams = new URLSearchParams(location.search);
+		const searchParams = new URLSearchParams(location.search)
 		let prepare = {
 			ts: searchParams.get("t"),
 			ws: searchParams.get("w"),
 			lss: searchParams.get("ls")
-		};
+		}
 		if (prepare.ts) {
 			ts = prepare.ts.split(",");
 		}
@@ -29,8 +38,8 @@
 <div class="flex flex-wrap justify-center gap-2 p-4 print:hidden">
 	<div class="">
 		<label class="inline-block border-2 border-teal-500 font-medium text-teal-600">
-			<span class="pl-2">Count</span>
-			<input class="bg-transparent text-center p-1 w-20" type="number" bind:value={repeat}>
+			<span class="pl-2">Repeat</span>
+			<input class="bg-transparent text-center p-1 w-20" type="number" min="1" max="99" bind:value={repeat}>
 		</label>
 	</div>
 	{#each ts as part, index}
