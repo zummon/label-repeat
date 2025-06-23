@@ -23,19 +23,12 @@
 
 	onMount(() => {
 		const searchParams = new URLSearchParams(location.search);
-		let prepare = {
-			ts: searchParams.get("t"),
-			ws: searchParams.get("w"),
-			lss: searchParams.get("ls"),
-		};
-		if (prepare.ts) {
-			ts = prepare.ts.split(",");
-		}
-		if (prepare.ws) {
-			ws = prepare.ws.split(",");
-		}
-		if (prepare.lss) {
-			lss = prepare.lss.split(",");
+		let prepare = []
+		for (const [key, value] of searchParams) {
+			const slugs = key.split('-')
+			if (slugs[0]) {
+				
+			}
 		}
 	});
 </script>
