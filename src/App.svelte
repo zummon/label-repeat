@@ -30,9 +30,11 @@
 			});
 			searchParams.append(`${idx}-r`, chunk.repeat.toString());
 		});
-		navigator.clipboard.writeText(
-			"https://codepen.io/zummon/full/qBzPxjj" + searchParams.toString(),
+		window.open(
+			"https://codepen.io/zummon/full/qBzPxjj?" + searchParams.toString(),
+			"_blank",
 		);
+		// navigator.clipboard.writeText();
 	}
 
 	onMount(() => {
@@ -61,7 +63,7 @@
 				prepare[idx].repeat = Number(value);
 			}
 		}
-		prepare = chunks;
+		chunks = prepare;
 	});
 </script>
 
@@ -132,9 +134,7 @@
 	</button>
 	{#each chunks as chunk, idx}
 		<details class="">
-			<summary
-				class="text-teal-600 cursor-pointer text-lg font-bold"
-			>
+			<summary class="text-teal-600 cursor-pointer text-lg font-bold">
 				{idx + 1}
 			</summary>
 			<div class="flex flex-wrap justify-center gap-2">
