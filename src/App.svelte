@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from "svelte";
 
+	const starter = {}
+
 	let repeat = $state(76);
 	let ts = $state(["title", "subtitle"]);
 	let ws = $state([500, 500]);
@@ -24,10 +26,22 @@
 	onMount(() => {
 		const searchParams = new URLSearchParams(location.search);
 		let prepare = []
-		for (const [key, value] of searchParams) {
-			const slugs = key.split('-')
-			if (slugs[0]) {
-				
+		for (const [shell, value] of searchParams) {
+			const slugs = shell.split('-')
+			const idx = Number(slugs[0])
+			const key = slugs[1]
+			const index = Number(slugs[2])
+			if (key == 't') {
+				prepare[idx].lines[index] = value
+			} else 
+			if (key == 'w') {
+				prepare[idx].heavies[index] = value
+			} else 
+			if (key == 's') {
+				prepare[idx].spaces[index] = value
+			} else 
+			if (key == 'r') {
+				prepare[idx].repeat = value
 			}
 		}
 	});
