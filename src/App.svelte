@@ -1,22 +1,14 @@
 <script>
 	import { onMount } from "svelte";
-
-	const starterChunks = [
-		{
-			lines: ["title", "subtitle"],
-			heavies: [500, 500],
-			spaces: [0, 0],
-			repeat: 76,
-		},
+	
+	let chunks = $state([
 		{
 			lines: [""],
 			heavies: [],
 			spaces: [],
-			repeat: 4,
+			repeat: 76,
 		},
-	];
-
-	let chunks = $state([starterChunks[0]]);
+	]);
 
 	function shareLink() {
 		const searchParams = new URLSearchParams();
@@ -48,7 +40,7 @@
 			const key = slugs[1];
 			const index = Number(slugs[2]);
 			if (!prepare[idx]) {
-				prepare[idx] = starterChunks[0];
+				prepare[idx] = chunks[0];
 			}
 			if (key == "t") {
 				prepare[idx].lines[index] = value;
@@ -111,7 +103,7 @@
 	<button
 		class="border-2 border-sky-500 text-sky-500 bg-white p-2 cursor-pointer"
 		onclick={() => {
-			chunks.push(starterChunks[1]);
+			chunks.push(chunks[0]);
 		}}
 	>
 		{@render plusicon()}
@@ -193,7 +185,7 @@
 					<button
 						class="text-sky-500 bg-white cursor-pointer"
 						onclick={() => {
-							chunks[idx].lines.push(starterChunks[1].lines[0]);
+							chunks[idx].lines.push(chunks[0].lines[0]);
 						}}
 					>
 						{@render plusicon()}
