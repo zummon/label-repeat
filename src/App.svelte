@@ -9,12 +9,6 @@
 			repeat: 76,
 		},
 		{
-			lines: ["exclusive", "Mr.Tee", "Human"],
-			heavies: [500, 500, 500],
-			spaces: [0, 0, 0],
-			repeat: 4,
-		},
-		{
 			lines: [""],
 			heavies: [],
 			spaces: [],
@@ -22,7 +16,7 @@
 		},
 	];
 
-	let chunks = $state([starterChunks[0], starterChunks[1]]);
+	let chunks = $state([starterChunks[0]]);
 
 	function shareLink() {
 		const searchParams = new URLSearchParams();
@@ -72,7 +66,7 @@
 	});
 </script>
 
-<div class="p-4 print:hidden text-center">
+<div class="px-4 pt-4 pb-2 print:hidden text-center">
 	<button
 		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer"
 		onclick={() => {
@@ -115,15 +109,18 @@
 		</svg>
 	</button>
 	<button
-		class="border-2 border-blue-500 text-blue-500 bg-white p-2 cursor-pointer"
+		class="border-2 border-sky-500 text-sky-500 bg-white p-2 cursor-pointer"
 		onclick={() => {
-			chunks.push(starterChunks[2]);
+			chunks.push(starterChunks[1]);
 		}}
 	>
 		{@render plusicon()}
 	</button>
+</div>
+
+<div class="px-4 pb-4 print:hidden text-center">
 	{#each chunks as chunk, idx}
-		<details class="">
+		<details class="" open>
 			<summary class="text-teal-600 cursor-pointer text-lg font-bold">
 				{idx + 1}
 			</summary>
@@ -194,9 +191,9 @@
 				{/each}
 				<div class="">
 					<button
-						class="text-blue-500 bg-white cursor-pointer"
+						class="text-sky-500 bg-white cursor-pointer"
 						onclick={() => {
-							chunks[idx].lines.push(starterChunks[2].lines[0]);
+							chunks[idx].lines.push(starterChunks[1].lines[0]);
 						}}
 					>
 						{@render plusicon()}
