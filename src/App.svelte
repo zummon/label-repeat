@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
-	let chunks = $state([
+	const starterChunks = [
 		{
 			lines: ["title", "subtitle"],
 			heavies: [500, 500],
@@ -14,7 +14,15 @@
 			spaces: [0, 0, 0],
 			repeat: 4,
 		},
-	]);
+		{
+			lines: [""],
+			heavies: [],
+			spaces: [],
+			repeat: 4,
+		},
+	];
+
+	let chunks = $state([starterChunks[0], starterChunks[1]]);
 
 	function shareLink() {
 		const searchParams = new URLSearchParams();
@@ -46,12 +54,7 @@
 			const key = slugs[1];
 			const index = Number(slugs[2]);
 			if (!prepare[idx]) {
-				prepare[idx] = {
-					lines: [],
-					heavies: [],
-					spaces: [],
-					repeat: 4,
-				};
+				prepare[idx] = starterChunks[0];
 			}
 			if (key == "t") {
 				prepare[idx].lines[index] = value;
@@ -63,7 +66,9 @@
 				prepare[idx].repeat = Number(value);
 			}
 		}
-		chunks = prepare;
+		if (prepare[0]) {
+			chunks = prepare;
+		}
 	});
 </script>
 
@@ -110,27 +115,12 @@
 		</svg>
 	</button>
 	<button
-		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer"
+		class="border-2 border-blue-500 text-blue-500 bg-white p-2 cursor-pointer"
 		onclick={() => {
-			chunks.push({
-				lines: [],
-				heavies: [],
-				spaces: [],
-				repeat: 4,
-			});
+			chunks.push(starterChunks[2]);
 		}}
 	>
-		<!-- https://heroicons.com/micro plus -->
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 16 16"
-			fill="currentColor"
-			class="size-6"
-		>
-			<path
-				d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z"
-			/>
-		</svg>
+		{@render plusicon()}
 	</button>
 	{#each chunks as chunk, idx}
 		<details class="">
@@ -139,6 +129,14 @@
 			</summary>
 			<div class="flex flex-wrap justify-center gap-2">
 				<div class="">
+					<button
+						class="border-2 border-violet-500 text-violet-500 bg-white p-1 cursor-pointer"
+						onclick={() => {
+							chunks.splice(idx, 1);
+						}}
+					>
+						{@render xicon()}
+					</button>
 					<label
 						class="inline-block border-2 border-teal-500 font-medium text-teal-600"
 					>
@@ -167,7 +165,7 @@
 								class="bg-transparent text-center p-1 w-20 border-2 border-teal-500"
 								type="number"
 								step="100"
-								max="1000"
+								max="900"
 								min="100"
 								bind:value={chunks[idx].heavies[index]}
 							/>
@@ -177,11 +175,33 @@
 								class="bg-transparent text-center p-1 w-20 border-2 border-teal-500"
 								type="number"
 								step="0.01"
+								max="0.1"
+								min="-0.05"
 								bind:value={chunks[idx].spaces[index]}
 							/>
 						</div>
+						<div class="">
+							<button
+								class="text-violet-500 bg-white cursor-pointer"
+								onclick={() => {
+									chunks[idx].lines.splice(index, 1);
+								}}
+							>
+								{@render xicon()}
+							</button>
+						</div>
 					</div>
 				{/each}
+				<div class="">
+					<button
+						class="text-blue-500 bg-white cursor-pointer"
+						onclick={() => {
+							chunks[idx].lines.push(starterChunks[2].lines[0]);
+						}}
+					>
+						{@render plusicon()}
+					</button>
+				</div>
 			</div>
 		</details>
 	{/each}
@@ -210,3 +230,31 @@
 		{/each}
 	{/each}
 </div>
+
+{#snippet plusicon()}
+	<!-- https://heroicons.com/micro plus -->
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 16 16"
+		fill="currentColor"
+		class="size-6"
+	>
+		<path
+			d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z"
+		/>
+	</svg>
+{/snippet}
+
+{#snippet xicon()}
+	<!-- https://heroicons.com/micro x-mark -->
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 16 16"
+		fill="currentColor"
+		class="size-6"
+	>
+		<path
+			d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z"
+		/>
+	</svg>
+{/snippet}
