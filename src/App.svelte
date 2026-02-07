@@ -5,6 +5,7 @@
 		lines: ["zummon space",'create free web apps'],
 		heavies: [600,500],
 		spaces: [0,-0.01],
+		sizes: [18,16],
 		repeat: 76,
 	};
 
@@ -20,6 +21,9 @@
 				searchParams.append(`${idx}-w-${index}`, value.toString());
 			});
 			chunk.spaces.forEach((value, index) => {
+				searchParams.append(`${idx}-s-${index}`, value.toString());
+			});
+			chunk.sizes.forEach((value, index) => {
 				searchParams.append(`${idx}-s-${index}`, value.toString());
 			});
 			searchParams.append(`${idx}-r`, chunk.repeat.toString());
@@ -50,6 +54,8 @@
 				prepare[idx].spaces[index] = Number(value);
 			} else if (key == "r") {
 				prepare[idx].repeat = Number(value);
+			} else if (key == 'p') {
+				prepare[idx].sizes[index] = Number(value);
 			}
 		}
 		if (prepare[0]) {
@@ -163,10 +169,13 @@
 									Edit content
 								</td>
 								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
-									Font weight
+									Font<br>size
 								</td>
 								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
-									Letter spacing
+									Font<br>weight 
+								</td>
+								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
+									Letter<br>spacing
 								</td>
 								<td class=""></td>
 							</tr>
@@ -182,6 +191,20 @@
 												type="text"
 												placeholder="Lorem, ipsum.."
 												bind:value={chunks[idx].lines[index]}
+											/>
+										</label>
+									</td>
+									<td class="border-2 border-teal-500">
+										<label class="">
+											<span class=""></span>
+											<input
+												class="p-1 field-sizing-content"
+												type="number"
+												placeholder="16"
+												step="1"
+												max="128"
+												min="8"
+												bind:value={chunks[idx].sizes[index]}
 											/>
 										</label>
 									</td>
@@ -259,10 +282,12 @@
 				{#each chunk.lines as value, index}
 					{@const heavy = chunks[idx].heavies[index]}
 					{@const space = chunks[idx].spaces[index]}
+					{@const size = chunks[idx].sizes[index]}
 					<div
 						class=""
 						style:font-weight={isNaN(heavy) ? 400 : heavy}
 						style:letter-spacing={`${isNaN(space) ? 0 : space}em`}
+						style:font-size={`${isNaN(size) ? 16 : size}px`}
 					>
 						{value}
 					</div>
