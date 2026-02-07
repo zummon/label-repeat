@@ -24,7 +24,7 @@
 				searchParams.append(`${idx}-s-${index}`, value.toString());
 			});
 			chunk.sizes.forEach((value, index) => {
-				searchParams.append(`${idx}-s-${index}`, value.toString());
+				searchParams.append(`${idx}-p-${index}`, value.toString());
 			});
 			searchParams.append(`${idx}-r`, chunk.repeat.toString());
 		});
