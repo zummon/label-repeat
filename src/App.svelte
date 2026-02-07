@@ -2,9 +2,9 @@
 	import { onMount } from "svelte";
 
 	const starterChunk = {
-		lines: [""],
-		heavies: [500],
-		spaces: [0],
+		lines: ["zummon space",'create free web apps'],
+		heavies: [600,500],
+		spaces: [0,-0.01],
 		repeat: 76,
 	};
 
@@ -58,141 +58,193 @@
 	});
 </script>
 
-<div class="px-4 pt-4 pb-2 print:hidden text-center">
+<div class="px-4 pt-4 pb-2 print:hidden text-center font-semibold">
 	<button
-		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer"
+		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer inline-flex"
 		onclick={() => {
 			print();
 		}}
 	>
-		<!-- https://heroicons.com/solid printer -->
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 24 24"
-			fill="currentColor"
-			class="size-8"
-		>
-			<path
-				fill-rule="evenodd"
-				d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 0 0 3 3h.27l-.155 1.705A1.875 1.875 0 0 0 7.232 22.5h9.536a1.875 1.875 0 0 0 1.867-2.045l-.155-1.705h.27a3 3 0 0 0 3-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0 0 18 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM16.5 6.205v-2.83A.375.375 0 0 0 16.125 3h-8.25a.375.375 0 0 0-.375.375v2.83a49.353 49.353 0 0 1 9 0Zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 0 1-.374.409H7.232a.375.375 0 0 1-.374-.409l.526-5.784a.373.373 0 0 1 .333-.337 41.741 41.741 0 0 1 8.566 0Zm.967-3.97a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H18a.75.75 0 0 1-.75-.75V10.5ZM15 9.75a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-.75-.75H15Z"
-				clip-rule="evenodd"
-			/>
-		</svg>
+		<span class="">
+			<!-- https://heroicons.com/solid printer -->
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="currentColor"
+				class="size-6"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 0 0 3 3h.27l-.155 1.705A1.875 1.875 0 0 0 7.232 22.5h9.536a1.875 1.875 0 0 0 1.867-2.045l-.155-1.705h.27a3 3 0 0 0 3-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0 0 18 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM16.5 6.205v-2.83A.375.375 0 0 0 16.125 3h-8.25a.375.375 0 0 0-.375.375v2.83a49.353 49.353 0 0 1 9 0Zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 0 1-.374.409H7.232a.375.375 0 0 1-.374-.409l.526-5.784a.373.373 0 0 1 .333-.337 41.741 41.741 0 0 1 8.566 0Zm.967-3.97a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H18a.75.75 0 0 1-.75-.75V10.5ZM15 9.75a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-.75-.75H15Z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+		</span>
+		<span>&nbsp; Print </span>
 	</button>
 	<button
-		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer"
+		class="border-2 border-teal-500 text-teal-500 bg-white p-2 cursor-pointer inline-flex"
 		onclick={() => {
 			shareLink();
 		}}
 	>
-		<!-- https://heroicons.com/mini link -->
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 20 20"
-			fill="currentColor"
-			class="size-8"
-		>
-			<path
-				d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z"
-			/>
-			<path
-				d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z"
-			/>
-		</svg>
+		<span>
+			<!-- https://heroicons.com/mini link -->
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 20 20"
+				fill="currentColor"
+				class="size-6"
+			>
+				<path
+					d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z"
+				/>
+				<path
+					d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z"
+				/>
+			</svg>
+		</span>
+		<span>&nbsp;Duplicate </span>
 	</button>
 	<button
-		class="border-2 border-sky-500 text-sky-500 bg-white p-2 cursor-pointer"
+		class="border-2 border-sky-500 text-sky-500 bg-white p-2 cursor-pointer inline-flex"
 		onclick={() => {
 			chunks.push(starterChunk);
 		}}
 	>
-		{@render plusicon()}
+		<span>
+			{@render plusicon()}
+		</span>
+		<span class=""> Add chunk </span>
 	</button>
 </div>
 
-<div class="px-4 pb-4 print:hidden text-center">
+<div class="px-4 pb-4 print:hidden flex flex-wrap justify-center gap-4">
 	{#each chunks as chunk, idx}
-		<details class="" open>
-			<summary class="text-teal-600 cursor-pointer text-lg font-bold">
-				{idx + 1}
-			</summary>
-			<div class="flex flex-wrap justify-center gap-2">
+		<div class="border border-zinc-300">
+			<div class="flex justify-between">
+				<div class="text-zinc-600 cursor-pointer font-semibold pl-2">
+					Chunk {idx + 1}
+				</div>
 				<div class="">
 					<button
-						class="border-2 border-violet-500 text-violet-500 bg-white p-1 cursor-pointer"
+						class="text-violet-600 bg-white p-1 cursor-pointer inline-flex"
 						onclick={() => {
 							chunks.splice(idx, 1);
 						}}
 					>
-						{@render xicon()}
+						<span class="">
+							{@render xicon()}
+						</span>
+						<span class="font-medium"> Delete chunk </span>
 					</button>
-					<label
-						class="inline-block border-2 border-teal-500 font-medium text-teal-600"
-					>
-						<span class="pl-2">Repeat</span>
+				</div>
+			</div>
+			<div class="text-center">
+				<div class="mb-2">
+					<label class="">
+						<span class="font-medium">Repeat</span>
 						<input
-							class="bg-transparent text-center p-1 w-20"
+							class="p-1 field-sizing-content border-2 border-teal-500"
 							type="number"
+							placeholder="16"
 							min="1"
 							max="99"
 							bind:value={chunks[idx].repeat}
 						/>
+						<span class="font-medium">times</span>
 					</label>
 				</div>
-				{#each chunk.lines as value, index}
-					<div class="flex flex-wrap gap-2">
-						<div class="">
-							<input
-								class="bg-transparent text-center p-1 border-2 border-teal-500"
-								type="text"
-								placeholder="Content.."
-								bind:value={chunks[idx].lines[index]}
-							/>
-						</div>
-						<div class="">
-							<input
-								class="bg-transparent text-center p-1 w-20 border-2 border-teal-500"
-								type="number"
-								step="100"
-								max="900"
-								min="100"
-								bind:value={chunks[idx].heavies[index]}
-							/>
-						</div>
-						<div class="">
-							<input
-								class="bg-transparent text-center p-1 w-20 border-2 border-teal-500"
-								type="number"
-								step="0.01"
-								max="0.1"
-								min="-0.05"
-								bind:value={chunks[idx].spaces[index]}
-							/>
-						</div>
-						<div class="">
-							<button
-								class="text-violet-500 bg-white cursor-pointer"
-								onclick={() => {
-									chunks[idx].lines.splice(index, 1);
-								}}
-							>
-								{@render xicon()}
-							</button>
-						</div>
-					</div>
-				{/each}
 				<div class="">
-					<button
-						class="text-sky-500 bg-white cursor-pointer"
-						onclick={() => {
-							chunks[idx].lines.push(starterChunk.lines[0]);
-						}}
-					>
-						{@render plusicon()}
-					</button>
+					<table class="w-fit mx-auto">
+						<thead>
+							<tr class="font-medium">
+								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
+									Edit content
+								</td>
+								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
+									Font weight
+								</td>
+								<td class="px-1 border-t-2 border-x-2 border-zinc-300">
+									Letter spacing
+								</td>
+								<td class=""></td>
+							</tr>
+						</thead>
+						<tbody>
+							{#each chunk.lines as value, index}
+								<tr>
+									<td class="border-2 border-teal-500">
+										<label class="">
+											<span class=""></span>
+											<input
+												class="p-1 field-sizing-content"
+												type="text"
+												placeholder="Lorem, ipsum.."
+												bind:value={chunks[idx].lines[index]}
+											/>
+										</label>
+									</td>
+									<td class="border-2 border-teal-500">
+										<label class="">
+											<span class=""></span>
+											<input
+												class="p-1 field-sizing-content"
+												type="number"
+												placeholder="400"
+												step="100"
+												max="900"
+												min="100"
+												bind:value={chunks[idx].heavies[index]}
+											/>
+										</label>
+									</td>
+									<td class="border-2 border-teal-500">
+										<label class="">
+											<span class=""></span>
+											<input
+												class="p-1 field-sizing-content"
+												type="number"
+												placeholder="0.00"
+												step="0.01"
+												max="0.1"
+												min="-0.05"
+												bind:value={chunks[idx].spaces[index]}
+											/>
+										</label>
+									</td>
+									<td class="border-y-2 border-r-2 border-zinc-300">
+										<button
+											class="text-violet-500 bg-white cursor-pointer pt-1"
+											onclick={() => {
+												chunks[idx].lines.splice(index, 1);
+											}}
+										>
+											{@render xicon()}
+										</button>
+									</td>
+								</tr>
+							{/each}
+							<tr class="">
+								<td class="" colspan="99">
+									<button
+										class="text-sky-500 bg-white cursor-pointer p-1 inline-flex"
+										onclick={() => {
+											chunks[idx].lines.push(starterChunk.lines[0]);
+										}}
+									>
+										<span>
+											{@render plusicon()}
+										</span>
+										<span class=""> Add line </span>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
-		</details>
+		</div>
 	{/each}
 </div>
 
